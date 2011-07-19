@@ -41,8 +41,11 @@ Configuring
 The following options can be configured in your settings.py:
 
 GRAVATAR_DEFAULT_SIZE   # Gravatar size in pixels. Defaults to '80'
+
 GRAVATAR_DEFAULT_IMAGE  # An image url or one of the following: 'mm', 'identicon', 'monsterid', 'wavatar', 'retro'. Defaults to 'mm'
+
 GRAVATAR_DEFAULT_RATING # One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'
+
 GRAVATAR_DEFAULT_SECURE # True to use https by default, False for plain http. Defaults to True
 
 TODO
