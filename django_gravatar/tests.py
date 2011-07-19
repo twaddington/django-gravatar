@@ -2,6 +2,7 @@ import urlparse
 import urllib
 
 from django.test import TestCase
+from django.template import Context, Template
 
 from django_gravatar.helpers import *
 
@@ -61,7 +62,41 @@ class TestGravatarHelperMethods(TestCase):
 
 class TestGravatarTemplateTags(TestCase):
     def test_gravatar_url(self):
-        pass
+        email = 'matt@automattic.com'
+        context = Context({'email': email})
+
+        t = Template("{% load gravatar %}{% gravatar_url email %}")
+        rendered = t.render(context)
+
+        self.assertEqual(rendered, get_gravatar_url(email))
 
     def test_gravatar_img(self):
-        pass
+        # Some defaults for testing
+        email = 'matt@automattic.com'
+        alt_text = 'some alt text'
+        css_class = 'gravatar-thumb'
+        size = 250
+
+        # Build context
+        context = Context({
+            'email': email,
+            'size': size,
+            'alt_text': alt_text,
+            'css_class': css_class,
+        })
+
+        # Default behavior
+        t = Template("{% load gravatar %}{% gravatar email %}")
+        rendered = t.render(context)
+
+        self.assertTrue(get_gravatar_url(email) in rendered)
+        self.assertTrue('class="gravatar"' in rendered)
+        self.assertTrue('alt=""' in rendered)
+
+        t = Template("{% load gravatar %}{% gravatar email size alt_text css_class %}")
+        rendered = t.render(context)
+
+        self.assertTrue('width="%s"' % (size,) in rendered)
+        self.assertTrue('height="%s"' % (size,) in rendered)
+        self.assertTrue('alt="%s"' % (alt_text,) in rendered)
+        self.assertTrue('class="%s"' % (css_class,) in rendered)
