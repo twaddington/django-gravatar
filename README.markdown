@@ -33,8 +33,11 @@ Use in templates:
     {% gravatar_url user.email 150 %}
     # https://secure.gravatar.com/avatar/hash.jpg?size=150
 
-    {% gravatar_img user.email 150 %}
+    {% gravatar user.email 150 %}
     # <img class="gravatar" src="https://secure.gravatar.com/avatar/hash.jpg?size=150" width="150" height="150" alt="" />
+
+    {% gravatar user.email 150 "user@example.com" %}
+    # <img class="gravatar" src="https://secure.gravatar.com/avatar/hash.jpg?size=150" width="150" height="150" alt="user@example.com" />
 
 Configuring
 ===========
