@@ -10,6 +10,10 @@ Features
 
 Installing
 ==========
+You can pip install the app directly from GitHub:
+
+    $ pip install git+git://github.com/twaddington/django-gravatar.git#egg=DjangoGravatar
+
 Add django_gravatar to your INSTALLED_APPS in settings.py:
 
     INSTALLED_APPS = (
