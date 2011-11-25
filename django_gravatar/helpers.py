@@ -33,7 +33,7 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
     """
     Builds a url to a gravatar from an email address.
 
-    :param email: The email to fetch the gravatar for
+    :param email: The email or user to fetch the gravatar for
     :param size: The size (in pixels) of the gravatar to fetch
     :param default: What type of default image to use if the gravatar does not exist
     :param rating: Used to filter the allowed gravatar ratings
@@ -43,6 +43,10 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
         url_base = GRAVATAR_SECURE_URL
     else:
         url_base = GRAVATAR_URL
+    
+    # If user, get email from user
+    if hasattr(email, 'email'):
+        email = email.email
 
     # Calculate the email hash
     email_hash = hashlib.md5(email.strip().lower()).hexdigest()
