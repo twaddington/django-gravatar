@@ -12,7 +12,10 @@ def gravatar_url(user_or_email, size=GRAVATAR_DEFAULT_SIZE):
     else:
         email = user_or_email
 
-    return get_gravatar_url(email=email, size=size)
+    try:
+        return get_gravatar_url(email=email, size=size)
+    except:
+        return ''
 
 def gravatar(user_or_email, size=GRAVATAR_DEFAULT_SIZE, alt_text='', css_class='gravatar'):
     """ Builds an gravatar <img> tag from an user or email """
@@ -20,8 +23,11 @@ def gravatar(user_or_email, size=GRAVATAR_DEFAULT_SIZE, alt_text='', css_class='
         email = user_or_email.email
     else:
         email = user_or_email
-    
-    url = get_gravatar_url(email=email, size=size)
+
+    try:
+        url = get_gravatar_url(email=email, size=size)
+    except:
+        return ''
 
     return '<img class="{css_class}" src="{src}" width="{width}" height="{height}" alt="{alt}" />'.format(\
         css_class=css_class, src=url, width=size, height=size, alt=alt_text)
