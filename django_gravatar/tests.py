@@ -124,3 +124,11 @@ class TestGravatarTemplateTags(TestCase):
         rendered = t.render(context)
 
         self.assertTrue(get_gravatar_url(user.email) in rendered)
+
+    def test_invalid_input(self):
+        context = Context({'email': None})
+
+        t = Template("{% load gravatar %}{% gravatar email %}")
+        rendered = t.render(context)
+
+        self.assertEqual("", rendered, "Invalid input should return empty result")
