@@ -100,3 +100,35 @@ class TestGravatarTemplateTags(TestCase):
         self.assertTrue('height="%s"' % (size,) in rendered)
         self.assertTrue('alt="%s"' % (alt_text,) in rendered)
         self.assertTrue('class="%s"' % (css_class,) in rendered)
+
+    def test_gravatar_user_url(self):
+        # class with email attribute
+        class user:
+            email = 'bouke@webatoom.nl'
+
+        context = Context({'user': user})
+
+        t = Template("{% load gravatar %}{% gravatar_url user %}")
+        rendered = t.render(context)
+
+        self.assertEqual(rendered, get_gravatar_url(user.email))
+
+    def test_gravatar_user_img(self):
+        # class with email attribute
+        class user:
+            email = 'bouke@webatoom.nl'
+        
+        context = Context({'user': user})
+
+        t = Template("{% load gravatar %}{% gravatar user %}")
+        rendered = t.render(context)
+
+        self.assertTrue(get_gravatar_url(user.email) in rendered)
+
+    def test_invalid_input(self):
+        context = Context({'email': None})
+
+        t = Template("{% load gravatar %}{% gravatar email %}")
+        rendered = t.render(context)
+
+        self.assertEqual("", rendered, "Invalid input should return empty result")
