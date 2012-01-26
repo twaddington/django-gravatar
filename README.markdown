@@ -14,6 +14,13 @@ You can pip install the app directly from GitHub:
 
     $ pip install git+git://github.com/twaddington/django-gravatar.git#egg=DjangoGravatar
 
+Alternatively, you can now install directly from PyPi!
+
+    $ pip install django-gravatar2
+
+Make sure you install [django-gravatar2](http://pypi.python.org/pypi/django-gravatar2) as
+there are several other incompatible django-gravatar libraries available.
+
 Add django_gravatar to your INSTALLED_APPS in settings.py:
 
     INSTALLED_APPS = (
