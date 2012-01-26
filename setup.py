@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='django-gravatar2',
-    version='1.0.0',
+    version='1.0.1',
     description='Basic Gravatar support with helper methods and templatetags.',
     long_description='',
     author='Tristan Waddington',
