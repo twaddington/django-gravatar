@@ -1,10 +1,12 @@
 from distutils.core import setup
 
+readme = open('README.rst')
+
 setup(
     name='django-gravatar2',
     version='1.0.1',
-    description='Essential Gravatar support for Django featuring several helper methods, templatetags and a full test suite!',
-    long_description='',
+    description='Essential Gravatar support for Django. Features helper methods, templatetags and a full test suite!',
+    long_description=readme.read(),
     author='Tristan Waddington',
     author_email='tristan.waddington@gmail.com',
     url='https://github.com/twaddington/django-gravatar',
