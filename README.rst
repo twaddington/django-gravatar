@@ -72,3 +72,8 @@ GRAVATAR_DEFAULT_IMAGE  # An image url or one of the following: 'mm', 'identicon
 GRAVATAR_DEFAULT_RATING # One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'
 
 GRAVATAR_DEFAULT_SECURE # True to use https by default, False for plain http. Defaults to True
+
+Contributing
+============
+Feel free to `fork the project <https://github.com/twaddington/django-gravatar>`_
+on GitHub! We'd love to see your pull requests.
