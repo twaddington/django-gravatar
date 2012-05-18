@@ -3,6 +3,7 @@ import urllib
 
 from django.test import TestCase
 from django.template import Context, Template
+from django.utils.html import escape
 
 from django_gravatar.helpers import *
 
@@ -68,7 +69,7 @@ class TestGravatarTemplateTags(TestCase):
         t = Template("{% load gravatar %}{% gravatar_url email %}")
         rendered = t.render(context)
 
-        self.assertEqual(rendered, get_gravatar_url(email))
+        self.assertEqual(rendered, escape(get_gravatar_url(email)))
 
     def test_gravatar_img(self):
         # Some defaults for testing
@@ -89,7 +90,7 @@ class TestGravatarTemplateTags(TestCase):
         t = Template("{% load gravatar %}{% gravatar email %}")
         rendered = t.render(context)
 
-        self.assertTrue(get_gravatar_url(email) in rendered)
+        self.assertTrue(escape(get_gravatar_url(email)) in rendered)
         self.assertTrue('class="gravatar"' in rendered)
         self.assertTrue('alt=""' in rendered)
 
@@ -111,7 +112,7 @@ class TestGravatarTemplateTags(TestCase):
         t = Template("{% load gravatar %}{% gravatar_url user %}")
         rendered = t.render(context)
 
-        self.assertEqual(rendered, get_gravatar_url(user.email))
+        self.assertEqual(rendered, escape(get_gravatar_url(user.email)))
 
     def test_gravatar_user_img(self):
         # class with email attribute
@@ -123,7 +124,7 @@ class TestGravatarTemplateTags(TestCase):
         t = Template("{% load gravatar %}{% gravatar user %}")
         rendered = t.render(context)
 
-        self.assertTrue(get_gravatar_url(user.email) in rendered)
+        self.assertTrue(escape(get_gravatar_url(user.email)) in rendered)
 
     def test_invalid_input(self):
         context = Context({'email': None})
