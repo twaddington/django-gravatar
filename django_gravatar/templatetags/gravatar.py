@@ -1,4 +1,5 @@
 from django import template
+from django.utils.html import escape
 
 from django_gravatar.helpers import get_gravatar_url, has_gravatar as has_gravatar_helper, GRAVATAR_DEFAULT_SIZE
 
@@ -13,7 +14,7 @@ def gravatar_url(user_or_email, size=GRAVATAR_DEFAULT_SIZE):
         email = user_or_email
 
     try:
-        return get_gravatar_url(email=email, size=size)
+        return escape(get_gravatar_url(email=email, size=size))
     except:
         return ''
 
@@ -25,7 +26,7 @@ def gravatar(user_or_email, size=GRAVATAR_DEFAULT_SIZE, alt_text='', css_class='
         email = user_or_email
 
     try:
-        url = get_gravatar_url(email=email, size=size)
+        url = escape(get_gravatar_url(email=email, size=size))
     except:
         return ''
 
