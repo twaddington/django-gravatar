@@ -76,4 +76,5 @@ GRAVATAR_DEFAULT_SECURE # True to use https by default, False for plain http. De
 Contributing
 ============
 Feel free to `fork django-gravatar <https://github.com/twaddington/django-gravatar>`_
-on GitHub! We'd love to see your pull requests.
+on GitHub! We'd love to see your pull requests. Please make sure you run
+tests before submitting a patch.
