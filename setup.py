@@ -1,10 +1,13 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
 
 readme = open('README.rst')
 
 setup(
     name='django-gravatar2',
-    version='1.0.3',
+    version='1.0.5',
     description='Essential Gravatar support for Django. Features helper methods, templatetags and a full test suite!',
     long_description=readme.read(),
     author='Tristan Waddington',

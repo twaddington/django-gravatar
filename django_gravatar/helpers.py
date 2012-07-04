@@ -3,9 +3,6 @@ import urllib
 
 from django.conf import settings
 
-GRAVATAR_URL = 'http://www.gravatar.com/'
-GRAVATAR_SECURE_URL = 'https://secure.gravatar.com/'
-
 # These options can be used to change the default image if no gravatar is found
 GRAVATAR_DEFAULT_IMAGE_404 = '404'
 GRAVATAR_DEFAULT_IMAGE_MYSTERY_MAN = 'mm'
@@ -19,6 +16,10 @@ GRAVATAR_RATING_G = 'g'
 GRAVATAR_RATING_PG = 'pg'
 GRAVATAR_RATING_R = 'r'
 GRAVATAR_RATING_X = 'x'
+
+# Get Gravatar base url from settings.py
+GRAVATAR_URL = getattr(settings, 'GRAVATAR_URL', 'http://www.gravatar.com/')
+GRAVATAR_SECURE_URL = getattr(settings, 'GRAVATAR_SECURE_URL', 'https://secure.gravatar.com/')
 
 # Get user defaults from settings.py
 GRAVATAR_DEFAULT_SIZE = getattr(settings, 'GRAVATAR_DEFAULT_SIZE', 80)
