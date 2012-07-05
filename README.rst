@@ -42,7 +42,7 @@ Use in code:
 ::
 
     from django_gravatar.helpers import get_gravatar_url, has_gravatar
-    
+
     url = get_gravatar_url('alice@example.com', size=150)
     gravatar_exists = has_gravatar('bob@example.com')
 
@@ -64,6 +64,10 @@ Use in templates:
 Configuring
 ===========
 The following options can be configured in your settings.py:
+
+GRAVATAR_URL            # Gravatar base url. Defaults to 'http://www.gravatar.com/'
+
+GRAVATAR_SECURE_URL     # Gravatar base secure https url. Defaults to 'https://secure.gravatar.com/'
 
 GRAVATAR_DEFAULT_SIZE   # Gravatar size in pixels. Defaults to '80'
 
