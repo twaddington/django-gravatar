@@ -7,7 +7,7 @@ readme = open('README.rst')
 
 setup(
     name='django-gravatar2',
-    version='1.0.5',
+    version='1.0.6',
     description='Essential Gravatar support for Django. Features helper methods, templatetags and a full test suite!',
     long_description=readme.read(),
     author='Tristan Waddington',
