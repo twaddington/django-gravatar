@@ -2,6 +2,8 @@ django-gravatar
 ================
 A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
 
+[![Build Status](https://secure.travis-ci.org/twaddington/django-gravatar.png)](http://travis-ci.org/twaddington/django-gravatar)
+
 Features
 ========
 
