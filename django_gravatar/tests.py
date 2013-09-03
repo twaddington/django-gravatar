@@ -1,5 +1,4 @@
-import urlparse
-import urllib
+from .compat import urlparse, parse_qs, quote_plus
 
 from django.test import TestCase
 from django.template import Context, Template
@@ -24,8 +23,8 @@ class TestGravatarHelperMethods(TestCase):
         self.assertEqual(url, get_gravatar_url(email_strip))
 
         # Parse query string from url
-        urlp = urlparse.urlparse(url)
-        qs = urlparse.parse_qs(urlp.query)
+        urlp = urlparse(url)
+        qs = parse_qs(urlp.query)
 
         # Verify the correct query arguments are included with the proper defaults
         self.assertTrue(qs.has_key('s'))
@@ -47,7 +46,7 @@ class TestGravatarHelperMethods(TestCase):
         url = get_gravatar_url(email, default=default_url)
 
         # Verify urlencoding
-        self.assertTrue(urllib.quote_plus(default_url) in url)
+        self.assertTrue(quote_plus(default_url) in url)
 
     def test_has_gravatar(self):
         """
