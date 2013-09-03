@@ -11,4 +11,9 @@ except ImportError:     # Python 2
 try:
     from urllib.request import urlopen
 except ImportError:     # Python 2
-    from urllib import urlopen
+    from urllib2 import urlopen
+
+try:
+    from urllib.error import HTTPError
+except ImportError:     # Python 2
+    from urllib2 import HTTPError
