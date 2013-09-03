@@ -31,9 +31,9 @@ class TestGravatarHelperMethods(TestCase):
         self.assertTrue('d' in qs)
         self.assertTrue('r' in qs)
 
-        self.assertEquals(qs.get('s').pop(), str(GRAVATAR_DEFAULT_SIZE))
-        self.assertEquals(qs.get('d').pop(), GRAVATAR_DEFAULT_IMAGE)
-        self.assertEquals(qs.get('r').pop(), GRAVATAR_DEFAULT_RATING)
+        self.assertEqual(qs.get('s').pop(), str(GRAVATAR_DEFAULT_SIZE))
+        self.assertEqual(qs.get('d').pop(), GRAVATAR_DEFAULT_IMAGE)
+        self.assertEqual(qs.get('r').pop(), GRAVATAR_DEFAULT_RATING)
 
         # Verify the correct protocol is used
         if GRAVATAR_DEFAULT_SECURE:
