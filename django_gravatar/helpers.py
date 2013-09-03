@@ -47,7 +47,8 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
         url_base = GRAVATAR_URL
 
     # Calculate the email hash
-    email_hash = hashlib.md5(email.strip().lower()).hexdigest()
+    enc_email = email.strip().lower().encode("utf-8")
+    email_hash = hashlib.md5(enc_email).hexdigest()
 
     # Build querystring
     query_string = urlencode({
