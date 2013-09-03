@@ -27,9 +27,9 @@ class TestGravatarHelperMethods(TestCase):
         qs = parse_qs(urlp.query)
 
         # Verify the correct query arguments are included with the proper defaults
-        self.assertTrue(qs.has_key('s'))
-        self.assertTrue(qs.has_key('d'))
-        self.assertTrue(qs.has_key('r'))
+        self.assertTrue('s' in qs)
+        self.assertTrue('d' in qs)
+        self.assertTrue('r' in qs)
 
         self.assertEquals(qs.get('s').pop(), str(GRAVATAR_DEFAULT_SIZE))
         self.assertEquals(qs.get('d').pop(), GRAVATAR_DEFAULT_IMAGE)
