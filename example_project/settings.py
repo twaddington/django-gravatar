@@ -95,7 +95,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = "example_projetc_test_key"
+SECRET_KEY = 'example_project_test_key'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
