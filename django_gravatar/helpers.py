@@ -1,7 +1,8 @@
 import hashlib
-import urllib
 
 from django.conf import settings
+
+from .compat import urlencode, urlopen, HTTPError
 
 # These options can be used to change the default image if no gravatar is found
 GRAVATAR_DEFAULT_IMAGE_404 = '404'
@@ -46,10 +47,11 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
         url_base = GRAVATAR_URL
 
     # Calculate the email hash
-    email_hash = hashlib.md5(email.strip().lower()).hexdigest()
+    enc_email = email.strip().lower().encode("utf-8")
+    email_hash = hashlib.md5(enc_email).hexdigest()
 
     # Build querystring
-    query_string = urllib.urlencode({
+    query_string = urlencode({
         's': str(size),
         'd': default,
         'r': rating,
@@ -69,4 +71,7 @@ def has_gravatar(email):
     url = get_gravatar_url(email, default=GRAVATAR_DEFAULT_IMAGE_404)
 
     # Verify an OK response was received
-    return 200 == urllib.urlopen(url).getcode()
+    try:
+        return 200 == urlopen(url).getcode()
+    except HTTPError:
+        return False
