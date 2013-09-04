@@ -7,7 +7,7 @@ readme = open('README.rst')
 
 setup(
     name='django-gravatar2',
-    version='1.1.0',
+    version='1.1.1',
     description='Essential Gravatar support for Django. Features helper methods, templatetags and a full test suite!',
     long_description=readme.read(),
     author='Tristan Waddington',
@@ -21,10 +21,10 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6'
-        'Programming Language :: Python :: 2.7'
-        'Programming Language :: Python :: 3.2'
-        'Programming Language :: Python :: 3.3'
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
         'Framework :: Django',
     ]
 )
