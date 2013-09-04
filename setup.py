@@ -3,13 +3,13 @@ try:
 except ImportError:
     from distutils.core import setup
 
-readme = open('README.rst')
-
 setup(
     name='django-gravatar2',
     version='1.1.1',
-    description='Essential Gravatar support for Django. Features helper methods, templatetags and a full test suite!',
-    long_description=readme.read(),
+    description='Essential Gravatar support for Django. Features helper'
+                ' methods, templatetags and a full test suite!',
+    long_description=open('README.rst').read(),
+    license=open('LICENSE').read(),
     author='Tristan Waddington',
     author_email='tristan.waddington@gmail.com',
     url='https://github.com/twaddington/django-gravatar',
