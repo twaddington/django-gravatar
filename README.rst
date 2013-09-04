@@ -14,13 +14,7 @@ Features
 
 Installing
 ==========
-You can pip install the app directly from GitHub:
-
-::
-
-    $ pip install git+git://github.com/twaddington/django-gravatar.git#egg=DjangoGravatar
-
-Alternatively, you can now install directly from PyPi!
+Install from PyPi:
 
 ::
 
