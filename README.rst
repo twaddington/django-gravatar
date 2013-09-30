@@ -2,19 +2,30 @@ django-gravatar
 ================
 A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
 
+If you like this library and it's saved you some time, please consider
+supporting further development with a `Gittip donation`_!
+
 .. image:: https://secure.travis-ci.org/twaddington/django-gravatar.png
    :target: http://travis-ci.org/twaddington/django-gravatar
 
 Features
-========
+--------
 
 - Helper methods for constructing a gravatar url and checking an email for an existing gravatar
 - Templatetags for generating a gravatar url or gravatar <img> tag.
 - Full test suite!
 
 Installing
-==========
+----------
 Install from PyPi:
+
+You can pip install the app directly from GitHub:
+
+::
+
+    $ pip install git+git://github.com/twaddington/django-gravatar.git#egg=DjangoGravatar
+
+Alternatively, you can now install directly from PyPi!
 
 ::
 
@@ -33,7 +44,7 @@ Add django_gravatar to your INSTALLED_APPS in settings.py:
     )
 
 Basic Usage
-===========
+-----------
 Use in code:
 
 ::
@@ -59,7 +70,7 @@ Use in templates:
     # <img class="gravatar" src="https://secure.gravatar.com/avatar/hash.jpg?size=150" width="150" height="150" alt="user@example.com" />
 
 Configuring
-===========
+-----------
 The following options can be configured in your settings.py:
 
 GRAVATAR_URL            # Gravatar base url. Defaults to 'http://www.gravatar.com/'
@@ -75,7 +86,9 @@ GRAVATAR_DEFAULT_RATING # One of the following: 'g', 'pg', 'r', 'x'. Defaults to
 GRAVATAR_DEFAULT_SECURE # True to use https by default, False for plain http. Defaults to True
 
 Contributing
-============
+------------
 Feel free to `fork django-gravatar <https://github.com/twaddington/django-gravatar>`_
 on GitHub! We'd love to see your pull requests. Please make sure you run
 tests before submitting a patch.
+
+.. _Gittip donation: https://www.gittip.com/twaddington/ 
