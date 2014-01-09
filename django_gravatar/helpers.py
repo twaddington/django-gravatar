@@ -30,6 +30,12 @@ GRAVATAR_DEFAULT_RATING = getattr(settings, 'GRAVATAR_DEFAULT_RATING',
         GRAVATAR_RATING_G)
 GRAVATAR_DEFAULT_SECURE = getattr(settings, 'GRAVATAR_DEFAULT_SECURE', True)
 
+def calculate_gravatar_hash(email):
+    # Calculate the email hash
+    enc_email = email.strip().lower().encode("utf-8")
+    email_hash = hashlib.md5(enc_email).hexdigest()
+    return email_hash
+
 def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT_IMAGE,
         rating=GRAVATAR_DEFAULT_RATING, secure=GRAVATAR_DEFAULT_SECURE):
     """
@@ -47,8 +53,7 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
         url_base = GRAVATAR_URL
 
     # Calculate the email hash
-    enc_email = email.strip().lower().encode("utf-8")
-    email_hash = hashlib.md5(enc_email).hexdigest()
+    email_hash = calculate_gravatar_hash(email)
 
     # Build querystring
     query_string = urlencode({
@@ -75,3 +80,23 @@ def has_gravatar(email):
         return 200 == urlopen(url).getcode()
     except HTTPError:
         return False
+
+def get_gravatar_profile_url(email, secure=GRAVATAR_DEFAULT_SECURE):
+    """
+    Builds a url to a gravatar profile from an email address.
+
+    :param email: The email to fetch the gravatar for
+    :param secure: If True use https, otherwise plain http
+    """
+    if secure:
+        url_base = GRAVATAR_SECURE_URL
+    else:
+        url_base = GRAVATAR_URL
+
+    # Calculate the email hash
+    email_hash = calculate_gravatar_hash(email)
+
+    # Build url
+    url = '{base}{hash}'.format(base=url_base, hash=email_hash)
+
+    return url

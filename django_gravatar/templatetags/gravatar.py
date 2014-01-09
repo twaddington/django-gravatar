@@ -1,7 +1,7 @@
 from django import template
 from django.utils.html import escape
 
-from django_gravatar.helpers import get_gravatar_url, has_gravatar as has_gravatar_helper, GRAVATAR_DEFAULT_SIZE
+from django_gravatar.helpers import get_gravatar_url, has_gravatar as has_gravatar_helper, get_gravatar_profile_url, GRAVATAR_DEFAULT_SIZE
 
 # Get template.Library instance
 register = template.Library()
@@ -33,5 +33,17 @@ def gravatar(user_or_email, size=GRAVATAR_DEFAULT_SIZE, alt_text='', css_class='
     return '<img class="{css_class}" src="{src}" width="{width}" height="{height}" alt="{alt}" />'.format(\
         css_class=css_class, src=url, width=size, height=size, alt=alt_text)
 
+def gravatar_profile_url(user_or_email):
+    if hasattr(user_or_email, 'email'):
+        email = user_or_email.email
+    else:
+        email = user_or_email
+
+    try:
+        return get_gravatar_profile_url(email)
+    except:
+        return ''
+
 register.simple_tag(gravatar_url)
 register.simple_tag(gravatar)
+register.simple_tag(gravatar_profile_url)
