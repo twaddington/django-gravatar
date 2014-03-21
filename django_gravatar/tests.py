@@ -7,6 +7,14 @@ from django.utils.html import escape
 from django_gravatar.helpers import *
 
 class TestGravatarHelperMethods(TestCase):
+
+
+    def test_gravatar_hash_generation(self):
+        """
+        Verify the generation of has from email string.
+        """
+        pass
+
     def test_gravatar_url(self):
         """
         Verify that the gravatar_url method returns the expected output.
@@ -58,6 +66,13 @@ class TestGravatarHelperMethods(TestCase):
 
         self.assertFalse(has_gravatar(bad_email))
         self.assertTrue(has_gravatar(good_email))
+
+    def test_gravatar_profile_url(self):
+        """
+        Verify that the get_gravatar_profile_url helper method correctly
+        generates a profile url for gravatar user.
+        """
+        pass
 
 
 class TestGravatarTemplateTags(TestCase):
@@ -132,3 +147,9 @@ class TestGravatarTemplateTags(TestCase):
         rendered = t.render(context)
 
         self.assertEqual("", rendered, "Invalid input should return empty result")
+
+    def test_gravatar_profile_url(self):
+        """
+        Verify the profile url generated from template gravatar_profile_url tag.
+        """
+        pass
