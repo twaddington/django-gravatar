@@ -13,7 +13,11 @@ class TestGravatarHelperMethods(TestCase):
         """
         Verify the generation of has from email string.
         """
-        pass
+        email = "MyEmailAddress@example.com"
+        email_hash = "0bc83cb571cd1c50ba6f3e8a78ef1346"
+
+        self.assertEqual(calculate_gravatar_hash(email), email_hash)
+        self.assertEqual(calculate_gravatar_hash(email), calculate_gravatar_hash(email.lower()))
 
     def test_gravatar_url(self):
         """
@@ -72,7 +76,11 @@ class TestGravatarHelperMethods(TestCase):
         Verify that the get_gravatar_profile_url helper method correctly
         generates a profile url for gravatar user.
         """
-        pass
+        email = 'joe@example.com'
+        profile_url = get_gravatar_profile_url(email)
+        email_hash = calculate_gravatar_hash(email)
+
+        self.assertTrue(profile_url.endswith(email_hash))
 
 
 class TestGravatarTemplateTags(TestCase):
@@ -152,4 +160,13 @@ class TestGravatarTemplateTags(TestCase):
         """
         Verify the profile url generated from template gravatar_profile_url tag.
         """
-        pass
+        # class with email attribute
+        class user:
+            email = 'bouke@webatoom.nl'
+
+        context = Context({'user': user})
+
+        t = Template("{% load gravatar %}{% gravatar_profile_url user %}")
+        rendered = t.render(context)
+
+        self.assertEqual(rendered, escape(get_gravatar_profile_url(user.email)))

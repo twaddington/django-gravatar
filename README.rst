@@ -49,10 +49,12 @@ Use in code:
 
 ::
 
-    from django_gravatar.helpers import get_gravatar_url, has_gravatar
+    from django_gravatar.helpers import get_gravatar_url, has_gravatar, get_gravatar_profile_url, calculate_gravatar_hash
 
     url = get_gravatar_url('alice@example.com', size=150)
     gravatar_exists = has_gravatar('bob@example.com')
+    profile_url = get_gravatar_profile_url('alice@example.com')
+    email_hash = calculate_gravatar_hash('alice@example.com')
 
 Use in templates:
 
@@ -68,6 +70,9 @@ Use in templates:
 
     {% gravatar user.email 150 "user@example.com" %}
     # <img class="gravatar" src="https://secure.gravatar.com/avatar/hash.jpg?size=150" width="150" height="150" alt="user@example.com" />
+
+    {% gravatar_profile_url user.email %}
+    # https://secure.gravatar.com/hash
 
 Configuring
 -----------
