@@ -7,6 +7,18 @@ from django.utils.html import escape
 from django_gravatar.helpers import *
 
 class TestGravatarHelperMethods(TestCase):
+
+
+    def test_gravatar_hash_generation(self):
+        """
+        Verify the generation of has from email string.
+        """
+        email = "MyEmailAddress@example.com"
+        email_hash = "0bc83cb571cd1c50ba6f3e8a78ef1346"
+
+        self.assertEqual(calculate_gravatar_hash(email), email_hash)
+        self.assertEqual(calculate_gravatar_hash(email), calculate_gravatar_hash(email.lower()))
+
     def test_gravatar_url(self):
         """
         Verify that the gravatar_url method returns the expected output.
@@ -58,6 +70,17 @@ class TestGravatarHelperMethods(TestCase):
 
         self.assertFalse(has_gravatar(bad_email))
         self.assertTrue(has_gravatar(good_email))
+
+    def test_gravatar_profile_url(self):
+        """
+        Verify that the get_gravatar_profile_url helper method correctly
+        generates a profile url for gravatar user.
+        """
+        email = 'joe@example.com'
+        profile_url = get_gravatar_profile_url(email)
+        email_hash = calculate_gravatar_hash(email)
+
+        self.assertTrue(profile_url.endswith(email_hash))
 
 
 class TestGravatarTemplateTags(TestCase):
@@ -132,3 +155,18 @@ class TestGravatarTemplateTags(TestCase):
         rendered = t.render(context)
 
         self.assertEqual("", rendered, "Invalid input should return empty result")
+
+    def test_gravatar_profile_url(self):
+        """
+        Verify the profile url generated from template gravatar_profile_url tag.
+        """
+        # class with email attribute
+        class user:
+            email = 'bouke@webatoom.nl'
+
+        context = Context({'user': user})
+
+        t = Template("{% load gravatar %}{% gravatar_profile_url user %}")
+        rendered = t.render(context)
+
+        self.assertEqual(rendered, escape(get_gravatar_profile_url(user.email)))
