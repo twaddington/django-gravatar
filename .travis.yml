@@ -8,5 +8,5 @@ python:
   - pypy
 
 script:
-  - pip install --use-mirrors Django .
+  - pip install "Django<1.6" .
   - ( cd example_project && python manage.py test --verbosity=2 django_gravatar )

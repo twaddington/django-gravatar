@@ -17,3 +17,8 @@ try:
     from urllib.error import HTTPError
 except ImportError:     # Python 2
     from urllib2 import HTTPError
+
+try:
+    from urllib.error import URLError
+except ImportError:     # Python 2
+    from urllib2 import URLError
