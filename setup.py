@@ -9,6 +9,7 @@ setup(
     description='Essential Gravatar support for Django. Features helper'
                 ' methods, templatetags and a full test suite!',
     long_description=open('README.rst').read(),
+    keywords='django gravatar avatar',
     license=open('LICENSE').read(),
     author='Tristan Waddington',
     author_email='tristan.waddington@gmail.com',
