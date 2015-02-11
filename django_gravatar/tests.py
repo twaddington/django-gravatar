@@ -11,7 +11,7 @@ class TestGravatarHelperMethods(TestCase):
 
     def test_gravatar_hash_generation(self):
         """
-        Verify the generation of has from email string.
+        Verify the generation of hash from email string.
         """
         email = "MyEmailAddress@example.com"
         email_hash = "0bc83cb571cd1c50ba6f3e8a78ef1346"
