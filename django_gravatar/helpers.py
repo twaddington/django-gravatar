@@ -30,11 +30,13 @@ GRAVATAR_DEFAULT_RATING = getattr(settings, 'GRAVATAR_DEFAULT_RATING',
         GRAVATAR_RATING_G)
 GRAVATAR_DEFAULT_SECURE = getattr(settings, 'GRAVATAR_DEFAULT_SECURE', True)
 
+
 def calculate_gravatar_hash(email):
     # Calculate the email hash
     enc_email = email.strip().lower().encode("utf-8")
     email_hash = hashlib.md5(enc_email).hexdigest()
     return email_hash
+
 
 def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT_IMAGE,
         rating=GRAVATAR_DEFAULT_RATING, secure=GRAVATAR_DEFAULT_SECURE):
@@ -68,6 +70,7 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
 
     return url
 
+
 def has_gravatar(email):
     """
     Returns True if the user has a gravatar, False if otherwise
@@ -82,6 +85,7 @@ def has_gravatar(email):
         return 200 == urlopen(request).code
     except (HTTPError, URLError):
         return False
+
 
 def get_gravatar_profile_url(email, secure=GRAVATAR_DEFAULT_SECURE):
     """

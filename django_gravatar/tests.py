@@ -6,8 +6,8 @@ from django.utils.html import escape
 
 from django_gravatar.helpers import *
 
-class TestGravatarHelperMethods(TestCase):
 
+class TestGravatarHelperMethods(TestCase):
 
     def test_gravatar_hash_generation(self):
         """
@@ -140,7 +140,7 @@ class TestGravatarTemplateTags(TestCase):
         # class with email attribute
         class user:
             email = 'bouke@webatoom.nl'
-        
+
         context = Context({'user': user})
 
         t = Template("{% load gravatar %}{% gravatar user %}")

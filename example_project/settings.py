@@ -23,12 +23,14 @@ DATABASES = {
 }
 
 DOCKIT_BACKENDS = {
-    'default': {'ENGINE':'dockit.backends.mongo.backend.MongoDocumentStorage',
-                'USER':'travis',
-                'PASSWORD':'test',
-                'DB':'mydb_test',
-                'HOST':'127.0.0.1',
-                'PORT':27017,}
+    'default': {
+        'ENGINE': 'dockit.backends.mongo.backend.MongoDocumentStorage',
+        'USER': 'travis',
+        'PASSWORD': 'test',
+        'DB': 'mydb_test',
+        'HOST': '127.0.0.1',
+        'PORT': 27017,
+    }
 }
 
 
