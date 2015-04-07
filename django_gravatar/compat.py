@@ -9,9 +9,9 @@ except ImportError:     # Python 2
     from urllib import quote_plus, urlencode
 
 try:
-    from urllib.request import urlopen
+    from urllib.request import Request, urlopen
 except ImportError:     # Python 2
-    from urllib2 import urlopen
+    from urllib2 import Request, urlopen
 
 try:
     from urllib.error import HTTPError
