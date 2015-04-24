@@ -1,15 +1,16 @@
 django-gravatar
 ================
-A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
-
-If you like this library and it's saved you some time, please consider
-supporting further development with a `Gittip donation`_!
 
 .. image:: https://secure.travis-ci.org/twaddington/django-gravatar.png
     :target: https://travis-ci.org/twaddington/django-gravatar
 
 .. image:: https://img.shields.io/pypi/dm/django-gravatar2.svg
     :target: https://pypi.python.org/pypi/django-gravatar2
+
+A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
+
+If you like this library and it's saved you some time, please consider
+supporting further development with a `Gittip donation`_!
 
 Features
 --------
