@@ -1,10 +1,9 @@
-from .compat import urlparse, parse_qs, quote_plus
-
-from django.test import TestCase
 from django.template import Context, Template
+from django.test import TestCase
 from django.utils.html import escape
 
-from django_gravatar.helpers import *
+from .compat import parse_qs, quote_plus, urlparse
+from .helpers import *
 
 
 class TestGravatarHelperMethods(TestCase):

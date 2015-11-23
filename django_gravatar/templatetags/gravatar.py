@@ -1,7 +1,8 @@
 from django import template
 from django.utils.html import escape
+from django.utils.safestring import mark_safe
 
-from django_gravatar.helpers import get_gravatar_url, get_gravatar_profile_url, GRAVATAR_DEFAULT_SIZE
+from ..helpers import GRAVATAR_DEFAULT_SIZE, get_gravatar_profile_url, get_gravatar_url
 
 # Get template.Library instance
 register = template.Library()
@@ -32,8 +33,12 @@ def gravatar(user_or_email, size=GRAVATAR_DEFAULT_SIZE, alt_text='', css_class='
     except:
         return ''
 
-    return '<img class="{css_class}" src="{src}" width="{width}" height="{height}" alt="{alt}" />'.format(
-        css_class=css_class, src=url, width=size, height=size, alt=alt_text)
+    return mark_safe(
+        '<img class="{css_class}" src="{src}" width="{width}"'
+        ' height="{height}" alt="{alt}" />'.format(
+            css_class=css_class, src=url, width=size, height=size, alt=alt_text
+        )
+    )
 
 
 def gravatar_profile_url(user_or_email):
