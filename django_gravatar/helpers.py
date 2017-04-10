@@ -65,7 +65,7 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
     })
 
     # Build url
-    url = '{base}avatar/{hash}.jpg?{qs}'.format(base=url_base,
+    url = '{base}avatar/{hash}?{qs}'.format(base=url_base,
             hash=email_hash, qs=query_string)
 
     return url
