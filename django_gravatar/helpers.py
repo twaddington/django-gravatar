@@ -1,6 +1,7 @@
 import hashlib
 
 from django.conf import settings
+from django.utils.http import urlquote
 
 from .compat import urlencode, urlopen, Request, HTTPError, URLError
 
@@ -66,7 +67,7 @@ def get_gravatar_url(email, size=GRAVATAR_DEFAULT_SIZE, default=GRAVATAR_DEFAULT
 
     # Build url
     url = '{base}avatar/{hash}.jpg?{qs}'.format(base=url_base,
-            hash=email_hash, qs=query_string)
+            hash=email_hash, qs=urlquote(query_string))
 
     return url
 
