@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='django-gravatar2',
-    version='1.4.0',
+    version='1.4.1',
     description='Essential Gravatar support for Django. Features helper'
                 ' methods, templatetags and a full test suite!',
     long_description=open('README.rst').read(),
