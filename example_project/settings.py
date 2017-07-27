@@ -106,7 +106,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+MIDDLEWARE = MIDDLEWARE_CLASSES
+
+# ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -150,3 +152,17 @@ LOGGING = {
         },
     }
 }
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': TEMPLATE_DIRS,
+        'OPTIONS': {
+            'debug': TEMPLATE_DEBUG,
+            'loaders': TEMPLATE_LOADERS,
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+            )
+        },
+    },
+]
