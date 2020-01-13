@@ -6,9 +6,6 @@ django-gravatar
 
 A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
 
-If you like this library and it's saved you some time, please consider
-supporting further development with a `Gittip donation`_!
-
 Features
 --------
 
@@ -103,5 +100,3 @@ Run tests:
 
     $> cd example_projects
     $> ./manage.py test django_gravatar
-
-.. _Gittip donation: https://www.gittip.com/twaddington/ 
