@@ -48,7 +48,7 @@ def gravatar_profile_url(user_or_email):
         email = user_or_email
 
     try:
-        return get_gravatar_profile_url(email)
+        return escape(get_gravatar_profile_url(email))
     except:
         return ''
 
