@@ -97,4 +97,11 @@ Feel free to `fork django-gravatar <https://github.com/twaddington/django-gravat
 on GitHub! We'd love to see your pull requests. Please make sure you run
 tests before submitting a patch.
 
+Run tests:
+
+::
+
+    $> cd example_projects
+    $> ./manage.py test django_gravatar
+
 .. _Gittip donation: https://www.gittip.com/twaddington/ 
