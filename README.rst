@@ -98,5 +98,5 @@ Run tests:
 
 ::
 
-    $> cd example_projects
+    $> cd example_project
     $> ./manage.py test django_gravatar
