@@ -1,13 +1,18 @@
+from django.conf import settings
 from django.template import Context, Template
 from django.test import TestCase
 from django.utils.html import escape
 
 from .compat import parse_qs, quote_plus, urlparse
-from .helpers import *
+from .helpers import (
+    calculate_gravatar_hash,
+    get_gravatar_profile_url,
+    get_gravatar_url,
+    has_gravatar,
+)
 
 
 class TestGravatarHelperMethods(TestCase):
-
     def test_gravatar_hash_generation(self):
         """
         Verify the generation of hash from email string.
@@ -16,7 +21,9 @@ class TestGravatarHelperMethods(TestCase):
         email_hash = "0bc83cb571cd1c50ba6f3e8a78ef1346"
 
         self.assertEqual(calculate_gravatar_hash(email), email_hash)
-        self.assertEqual(calculate_gravatar_hash(email), calculate_gravatar_hash(email.lower()))
+        self.assertEqual(
+            calculate_gravatar_hash(email), calculate_gravatar_hash(email.lower())
+        )
 
     def test_gravatar_url(self):
         """
@@ -38,22 +45,22 @@ class TestGravatarHelperMethods(TestCase):
         qs = parse_qs(urlp.query)
 
         # Verify the correct query arguments are included with the proper defaults
-        self.assertTrue('s' in qs)
-        self.assertTrue('d' in qs)
-        self.assertTrue('r' in qs)
+        self.assertTrue("s" in qs)
+        self.assertTrue("d" in qs)
+        self.assertTrue("r" in qs)
 
-        self.assertEqual(qs.get('s').pop(), str(GRAVATAR_DEFAULT_SIZE))
-        self.assertEqual(qs.get('d').pop(), GRAVATAR_DEFAULT_IMAGE)
-        self.assertEqual(qs.get('r').pop(), GRAVATAR_DEFAULT_RATING)
+        self.assertEqual(qs.get("s").pop(), str(settings.GRAVATAR_DEFAULT_SIZE))
+        self.assertEqual(qs.get("d").pop(), settings.GRAVATAR_DEFAULT_IMAGE)
+        self.assertEqual(qs.get("r").pop(), settings.GRAVATAR_DEFAULT_RATING)
 
         # Verify the correct protocol is used
-        if GRAVATAR_DEFAULT_SECURE:
-            self.assertTrue(GRAVATAR_SECURE_URL in url)
+        if settings.GRAVATAR_DEFAULT_SECURE:
+            self.assertTrue(settings.GRAVATAR_SECURE_URL in url)
         else:
-            self.assertTrue(GRAVATAR_URL in url)
+            self.assertTrue(settings.GRAVATAR_URL in url)
 
         # Verify that a url value for default is urlencoded
-        default_url = 'https://www.example.com/default.jpg'
+        default_url = "https://www.example.com/default.jpg"
         url = get_gravatar_url(email, default=default_url)
 
         # Verify urlencoding
@@ -64,8 +71,8 @@ class TestGravatarHelperMethods(TestCase):
         Verify that the has_gravatar helper method correctly
         determines if a user has a gravatar or not.
         """
-        bad_email = 'eve@example.com'
-        good_email = 'matt@automattic.com'
+        bad_email = "eve@example.com"
+        good_email = "matt@automattic.com"
 
         self.assertFalse(has_gravatar(bad_email))
         self.assertTrue(has_gravatar(good_email))
@@ -75,7 +82,7 @@ class TestGravatarHelperMethods(TestCase):
         Verify that the get_gravatar_profile_url helper method correctly
         generates a profile url for gravatar user.
         """
-        email = 'joe@example.com'
+        email = "joe@example.com"
         profile_url = get_gravatar_profile_url(email)
         email_hash = calculate_gravatar_hash(email)
 
@@ -84,8 +91,8 @@ class TestGravatarHelperMethods(TestCase):
 
 class TestGravatarTemplateTags(TestCase):
     def test_gravatar_url(self):
-        email = 'matt@automattic.com'
-        context = Context({'email': email})
+        email = "matt@automattic.com"
+        context = Context({"email": email})
 
         t = Template("{% load gravatar %}{% gravatar_url email %}")
         rendered = t.render(context)
@@ -94,18 +101,20 @@ class TestGravatarTemplateTags(TestCase):
 
     def test_gravatar_img(self):
         # Some defaults for testing
-        email = 'matt@automattic.com'
-        alt_text = 'some alt text'
-        css_class = 'gravatar-thumb'
+        email = "matt@automattic.com"
+        alt_text = "some alt text"
+        css_class = "gravatar-thumb"
         size = 250
 
         # Build context
-        context = Context({
-            'email': email,
-            'size': size,
-            'alt_text': alt_text,
-            'css_class': css_class,
-        })
+        context = Context(
+            {
+                "email": email,
+                "size": size,
+                "alt_text": alt_text,
+                "css_class": css_class,
+            }
+        )
 
         # Default behavior
         t = Template("{% load gravatar %}{% gravatar email %}")
@@ -118,17 +127,17 @@ class TestGravatarTemplateTags(TestCase):
         t = Template("{% load gravatar %}{% gravatar email size alt_text css_class %}")
         rendered = t.render(context)
 
-        self.assertTrue('width="%s"' % (size,) in rendered)
-        self.assertTrue('height="%s"' % (size,) in rendered)
-        self.assertTrue('alt="%s"' % (alt_text,) in rendered)
-        self.assertTrue('class="%s"' % (css_class,) in rendered)
+        self.assertTrue(f'width="{size}"' in rendered)
+        self.assertTrue(f'height="{size}"' in rendered)
+        self.assertTrue(f'alt="{alt_text}"' in rendered)
+        self.assertTrue(f'class="{css_class}"' in rendered)
 
     def test_gravatar_user_url(self):
         # class with email attribute
         class user:
-            email = 'bouke@webatoom.nl'
+            email = "bouke@webatoom.nl"
 
-        context = Context({'user': user})
+        context = Context({"user": user})
 
         t = Template("{% load gravatar %}{% gravatar_url user %}")
         rendered = t.render(context)
@@ -138,9 +147,9 @@ class TestGravatarTemplateTags(TestCase):
     def test_gravatar_user_img(self):
         # class with email attribute
         class user:
-            email = 'bouke@webatoom.nl'
+            email = "bouke@webatoom.nl"
 
-        context = Context({'user': user})
+        context = Context({"user": user})
 
         t = Template("{% load gravatar %}{% gravatar user %}")
         rendered = t.render(context)
@@ -148,7 +157,7 @@ class TestGravatarTemplateTags(TestCase):
         self.assertTrue(escape(get_gravatar_url(user.email)) in rendered)
 
     def test_invalid_input(self):
-        context = Context({'email': None})
+        context = Context({"email": None})
 
         t = Template("{% load gravatar %}{% gravatar email %}")
         rendered = t.render(context)
@@ -161,9 +170,9 @@ class TestGravatarTemplateTags(TestCase):
         """
         # class with email attribute
         class user:
-            email = 'bouke@webatoom.nl'
+            email = "bouke@webatoom.nl"
 
-        context = Context({'user': user})
+        context = Context({"user": user})
 
         t = Template("{% load gravatar %}{% gravatar_profile_url user %}")
         rendered = t.render(context)

@@ -1,0 +1,50 @@
+default_language_version:
+    python: python3.10
+repos:
+    - repo: https://github.com/asottile/pyupgrade
+      rev: v2.38.0
+      hooks:
+          - id: pyupgrade
+            args:
+                [
+                    "--py36-plus",
+                    "--py37-plus",
+                    "--py38-plus",
+                    "--py39-plus",
+                    "--py310-plus",
+                ]
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.3.0
+      hooks:
+          # See https://pre-commit.com/hooks.html for more hooks
+          - id: check-ast
+          - id: check-case-conflict
+          - id: check-executables-have-shebangs
+          - id: check-merge-conflict
+          - id: debug-statements
+          - id: end-of-file-fixer
+          - id: name-tests-test
+            args: ["--django"]
+          - id: trailing-whitespace
+          - id: detect-private-key
+          # - id: requirements-txt-fixer
+    - repo: https://github.com/psf/black
+      rev: 22.10.0
+      hooks:
+          - id: black
+    - repo: https://github.com/pycqa/isort
+      rev: 5.10.1
+      hooks:
+          - id: isort
+    - repo: https://gitlab.com/pycqa/flake8
+      rev: 5.0.4
+      hooks:
+          - id: flake8
+            additional_dependencies:
+                [
+                    "flake8-bugbear",
+                    "flake8-comprehensions",
+                    "flake8-mutable",
+                    "flake8-print",
+                    "flake8-simplify",
+                ]
