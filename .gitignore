@@ -4,3 +4,4 @@ MANIFEST
 dist/
 build/
 .tox
+.venv/

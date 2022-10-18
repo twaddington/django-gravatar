@@ -76,17 +76,23 @@ Configuring
 -----------
 The following options can be configured in your settings.py:
 
-GRAVATAR_URL            # Gravatar base url. Defaults to 'http://www.gravatar.com/'
+GRAVATAR_URL             # Gravatar base url. Defaults to 'http://www.gravatar.com/'
 
-GRAVATAR_SECURE_URL     # Gravatar base secure https url. Defaults to 'https://secure.gravatar.com/'
+GRAVATAR_SECURE_URL      # Gravatar base secure https url. Defaults to 'https://secure.gravatar.com/'
 
-GRAVATAR_DEFAULT_SIZE   # Gravatar size in pixels. Defaults to '80'
+GRAVATAR_AGNOSTICT_URL   # Gravatar base url. Defaults to '//www.gravatar.com'.
+Uses 'https' on 'https' websites, 'http' otherwise.
 
-GRAVATAR_DEFAULT_IMAGE  # An image url or one of the following: 'mm', 'identicon', 'monsterid', 'wavatar', 'retro'. Defaults to 'mm'
+GRAVATAR_DEFAULT_SIZE    # Gravatar size in pixels. Defaults to '80'
 
-GRAVATAR_DEFAULT_RATING # One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'
+GRAVATAR_DEFAULT_IMAGE   # An image url or one of the following: 'mm', 'identicon', 'monsterid', 'wavatar', 'retro'. Defaults to 'mm'
 
-GRAVATAR_DEFAULT_SECURE # True to use https by default, False for plain http. Defaults to True
+GRAVATAR_DEFAULT_RATING  # One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'
+
+GRAVATAR_DEFAULT_SECURE  # True to use https by default, False for plain http.
+None for agnostic. Defaults to None
+
+GRAVATAR_FORCE_EXTENSION # Adds '.jpg' to file
 
 Contributing
 ------------
