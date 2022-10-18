@@ -91,9 +91,9 @@ The following options can be configured in your settings.py:
 +--------------------------+------------------------------------------------------------------------------------------------------------+
 | GRAVATAR_DEFAULT_RATING  | One of the following: 'g', 'pg', 'r', 'x'. Defaults to 'g'                                                 |
 +--------------------------+------------------------------------------------------------------------------------------------------------+
-| GRAVATAR_DEFAULT_SECURE  | True to use https by default, False for plain http. None for agnostic. Defaults to None                    |
+| GRAVATAR_DEFAULT_SECURE  | `True` to use https by default, `False` for plain http. `None` for agnostic. Defaults to `None`            |
 +--------------------------+------------------------------------------------------------------------------------------------------------+
-| GRAVATAR_FORCE_EXTENSION | Adds '.jpg' to file. Defaults to False (no '.jpg')                                                         |
+| GRAVATAR_FORCE_EXTENSION | Adds '.jpg' to file. Defaults to `False` (no '.jpg')                                                       |
 +--------------------------+------------------------------------------------------------------------------------------------------------+
 
 Contributing
