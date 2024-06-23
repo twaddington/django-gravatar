@@ -6,6 +6,12 @@ django-gravatar
 
 A lightweight django-gravatar app. Includes helper methods for interacting with gravatars outside of template code.
 
+    **A Note on Continued Support**
+
+    Hey Folks, I haven't actively maintained this project for some years now. Please let me know if there are security issues or regressions in basic functionality. I will do my best to address those. However, I don't have the time to invest in other changes to the project. Additionally, I haven't been involved in Django development in many years now. If you're interested in adopting this project please shoot me a message.
+    
+    --- Tristan
+
 Features
 --------
 
