@@ -123,6 +123,38 @@ class TestGravatarTemplateTags(TestCase):
         self.assertTrue('alt="%s"' % (alt_text,) in rendered)
         self.assertTrue('class="%s"' % (css_class,) in rendered)
 
+    def test_gravatar_img_xss(self):
+        # Some defaults for testing
+        email = 'matt@automattic.com'
+        alt_text = '"><script>alert(1)</script>'
+        alt_text_escaped = '&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;'
+        css_class = 'gravatar-thumb'
+        size = 250
+
+        # Build context
+        context = Context({
+            'email': email,
+            'size': size,
+            'alt_text': alt_text,
+            'css_class': css_class,
+        })
+
+        # Default behavior
+        t = Template("{% load gravatar %}{% gravatar email %}")
+        rendered = t.render(context)
+
+        self.assertTrue(escape(get_gravatar_url(email)) in rendered)
+        self.assertTrue('class="gravatar"' in rendered)
+        self.assertTrue('alt=""' in rendered)
+
+        t = Template("{% load gravatar %}{% gravatar email size alt_text css_class %}")
+        rendered = t.render(context)
+
+        self.assertTrue('width="%s"' % (size,) in rendered)
+        self.assertTrue('height="%s"' % (size,) in rendered)
+        self.assertTrue('alt="%s"' % (alt_text_escaped,) in rendered)
+        self.assertTrue('class="%s"' % (css_class,) in rendered)
+
     def test_gravatar_user_url(self):
         # class with email attribute
         class user:
